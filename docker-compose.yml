@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+        product-service:
+                build: ./product
+                volumes:
+                        - /home/dinesh0008/docker-compose/flask-php-app/product:/usr/src/app
+                ports:
+                        - 5002:80        
+        website:
+                image: php:apache
+                volumes:
+                        - /home/dinesh0008/docker-compose/flask-php-app/website:/var/www/html
+                ports:
+                        - 5000:80
+                depends_on:
+                        - product-service
